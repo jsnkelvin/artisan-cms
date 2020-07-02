@@ -1,0 +1,54 @@
+{
+  "station-list": [
+    {
+      "id": 1,
+      "code": "PWT",
+      "name": "Purwakarta"
+    },
+    {
+      "id": 2,
+      "code": "CGN",
+      "name": "Ciganea"
+    },
+    {
+      "id": 3,
+      "code": "SKT",
+      "name": "Sukatani"
+    },
+    {
+      "id": 4,
+      "code": "PLR",
+      "name": "Plered"
+    },
+    {
+      "id": 5,
+      "code": "CKD",
+      "name": "Cikadongdong"
+    },
+    {
+      "id": 6,
+      "code": "RD",
+      "name": "Rendeh"
+    },
+    {
+      "id": 7,
+      "code": "MWT",
+      "name": "Maswati"
+    },
+    {
+      "id": 8,
+      "code": "SST",
+      "name": "Sasaksaat"
+    },
+    {
+      "id": 9,
+      "code": "PD",
+      "name": "Padalarang"
+    },
+    {
+      "id": 10,
+      "code": "CLM",
+      "name": "Cilame"
+    }
+  ]
+}
