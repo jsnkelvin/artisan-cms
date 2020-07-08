@@ -33,4 +33,30 @@ export class GlobalService {
     });
     return dirtyValues;
   }
+
+  markAsDirtyForm(fg: FormGroup) {
+    const controls = fg.controls;
+    _.forEach(controls, (control) => {
+      control.markAsTouched(true);
+      control.markAsDirty(true);
+    });
+  }
+
+  getErrorMessage(err: any) {
+    this.log('err', err, 'error');
+    if (err) {
+      if (err.status === 0) {
+        return 'Koneksi terputus, silahkan coba lagi';
+      } else {
+        if (isDevMode()) {
+          const errors = _.isArray(err) ? err : err.error.errors;
+          return _.map(errors, 'message').join(' ');
+        } else {
+          return _.isArray(err) ? _.map(err, 'message').join(' ') : 'Terjadi kesalahan, silahkan coba lagi nanti';
+        }
+      }
+    } else {
+      return 'Terjadi kesalahan, silahkan coba lagi nanti';
+    }
+  }
 }
