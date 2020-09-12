@@ -9,7 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 At a high level, the structure looks roughly like this:
 
 ```
-boilerplate-angular-9/
+boilerplate-angular-10/
   |- mocks/
   |  |- dummy-data.json
   |  |- middleware.js
