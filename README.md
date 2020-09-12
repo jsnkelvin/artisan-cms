@@ -2,9 +2,53 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
 
+## Learn
+
+### Overall Directory Structure
+
+At a high level, the structure looks roughly like this:
+
+```
+boilerplate-angular-9/
+  |- mocks/
+  |  |- dummy-data.json
+  |  |- middleware.js
+  |  |- routes.json
+  |- src/
+  |  |- app/
+  |  |  |- pages
+  |  |  |  |- <app component per module>
+  |  |- shared/
+  |  |  |- services
+  |  |  |  |- core
+  |  |  |  |  |- <core httpclient method>
+  |  |  |  |  <service per module>
+  |  |  |- guards
+  |  |  |  |- <guards for routing (canActivate, canDeactivate, etc)>
+  |  |  |- pipes
+  |  |  |  |- <custom pipe>
+  |  |  |- common
+  |  |  |  |- <reusable code>
+  |  |  |- models
+  |  |  |  |- <interface>
+  |  |  |- interceptors
+  |  |  |  |- <http interceptor>
+  |- assets/
+  |  |- <static files>
+  |- environments/
+  |  |- <env variable>
+  |- package.json
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+Run `npm run mock:server` to access dummy data via [JSON Server](https://github.com/typicode/json-server)
+
+## How it works
+
+Run `JSON Server` and serve angular. See an example on example service & home component
 
 ## Code scaffolding
 

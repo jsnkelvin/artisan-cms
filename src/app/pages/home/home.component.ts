@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ExampleService } from '@shared/services';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(private exampleSrv: ExampleService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getData();
+  }
+
+  getData() {
+    this.exampleSrv.getData().subscribe((res) => {
+      console.log('result', res);
+    });
+  }
 }
