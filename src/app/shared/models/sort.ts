@@ -1,4 +1,4 @@
 export interface Sort {
-  orderBy?: string;
-  orderType?: string;
+  order_by?: string;
+  order_type?: string;
 }

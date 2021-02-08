@@ -1,0 +1,77 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent" class="p-3">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first text-center ml-1">
+      <img src="./../../../assets/img/artisan-logo.png" />
+    </div>
+
+    <div>
+      <!-- <app-alert-apps
+        [alertType]="alert?.type"
+        [message]="alert?.message"
+        [dismissible]="dismised?"
+      ></app-alert-apps> -->
+    </div>
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" class="m-2" (ngSubmit)="onClickedSubmit()">
+      <div class="form-group">
+        <label for="">E-mail</label>
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control custom-input"
+            id="username"
+            placeholder="Enter username"
+            formControlName="username"
+            required
+          />
+          <div class="input-group-addon">
+            <a href=""><i class="fa fa-eye-slash show-password hide-this" *ngIf="!show" aria-hidden="true"></i></a>
+            <a href=""><i class="fa fa-eye show-password hide-this" *ngIf="show" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="invalid-feedback d-block text-content" *ngIf="submitted && loginFormVal.username.errors">
+          <div *ngIf="loginFormVal.username.errors.required">
+            Username is Required
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="">Password</label>
+        <div class="input-group">
+          <input
+            [type]="show ? 'text' : 'password'"
+            class="form-control custom-input"
+            id="password"
+            placeholder="Enter password"
+            formControlName="password"
+            required
+          />
+
+          <div class="input-group-addon" (click)="$event.preventDefault(); showPassword()">
+            <a><i class="fa fa-eye-slash show-password" *ngIf="!show" aria-hidden="true"></i></a>
+            <a><i class="fa fa-eye show-password" *ngIf="show" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <div class="invalid-feedback d-block text-content" *ngIf="submitted && loginFormVal.password.errors">
+          <div *ngIf="loginFormVal.password.errors.required">
+            Password is required
+          </div>
+          <div *ngIf="loginFormVal.password.errors.minlength">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </div>
+      <div class="text-left">
+        <!-- <a class="fourth text-content link" routerLink="/" value="Log In"
+          >Forgot Password?</a
+        > -->
+        <input type="submit" class="btn btn-green w-100" value="Log In" />
+      </div>
+    </form>
+  </div>
+</div>

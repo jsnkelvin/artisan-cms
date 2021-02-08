@@ -1,1 +1,81 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* ngx-boostrap */
+@import 'variables';
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+/* ngx-datatable boostrap style */
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.css';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+@import './bootstrap.scss';
+
+/* font google */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+html {
+  background-color: #fbfdfd;
+}
+
+.card-basic {
+  border-radius: 8px !important;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.07) !important;
+  background-color: #ffffff !important;
+  border: none !important;
+}
+
+.page-title {
+  position: absolute;
+  top: 22px;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.hide-this {
+  visibility: hidden;
+}
+
+/* ngx-datatable custom */
+.ngx-datatable.bootstrap .datatable-header .datatable-header-cell .datatable-header-cell-label {
+  text-transform: uppercase !important;
+}
+.ngx-datatable .datatable-footer .datatable-footer-inner {
+  margin-top: 30px;
+}
+
+/* buttons custom */
+
+.btn-green {
+  background-color: #006d77;
+  color: white;
+  font-size: 14px;
+
+  &:hover {
+    color: #006d77;
+    background-color: white;
+    border: 1px solid #006d77;
+  }
+}
+
+/* form custom */
+
+.form-group label {
+  font-weight: 600;
+  color: #353535;
+}
+
+.custom-input {
+  background-color: #f8f8f8;
+  border: none;
+  border-radius: 8px;
+
+  &:focus {
+    border: none;
+    box-shadow: none;
+    background-color: #f8f8f8;
+  }
+}

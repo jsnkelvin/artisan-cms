@@ -31,6 +31,13 @@ export class HttpRequestInterceptor implements HttpInterceptor {
           headers: request.headers.delete('Content-Type', 'multipart/form-data'),
         });
       }
+      /*    if (request.headers.get('Content-Type') === 'text/csv') {
+        request = request.clone({
+          setHeaders: {
+            'content-type': 'text/csv',
+          },
+        });
+      } */
     }
 
     request = request.clone({

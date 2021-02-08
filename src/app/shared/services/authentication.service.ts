@@ -3,7 +3,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { CacheService } from './cache.service';
 import { GlobalService } from './global.service';
 import { ApiService } from './core/api.service';
-import { User } from '../models/user';
+import { Admin } from '../models/admin';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -11,7 +11,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  user: User = null;
+  user: Admin = null;
   allowed = false;
 
   constructor(
@@ -55,12 +55,15 @@ export class AuthenticationService {
           // HANDLE USER ROLE HERE IF ANY!
           // EXAMPLE:
 
-          // this.allowed = allowedRoles
-          //   ? allowedRoles[0] === "all"
-          //     ? true
-          //     : allowedRoles.includes(this.user.type)
-          //   : false;
-          // this.gs.log("this user role", this.user.type);
+          this.allowed = allowedRoles
+            ? allowedRoles[0] === 'all'
+              ? true
+              : allowedRoles.includes(this.user.role)
+            : false;
+          this.gs.log('this user role', this.user.role);
+          if (this.user.isAdmin) {
+            observer.next(true);
+          }
         } else {
           this.gs.log('expired');
           this.user = null;
@@ -77,10 +80,10 @@ export class AuthenticationService {
   }
 
   login(credentials: any): Observable<Response> {
-    return this.api.postData('api_login_path', credentials).pipe(
+    return this.api.postData('admin/auth/login', credentials).pipe(
       tap((res) => {
-        const response = res.result;
-        const token = response.token;
+        const response = res;
+        const token = res.response;
         const decoded = this.jwtHelper.decodeToken(token);
         this.cache.setCurrentUser(decoded, token);
       })

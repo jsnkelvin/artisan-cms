@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="page-title"><i class="fas fa-arrow-left" (click)="back()"></i> Add New Promo Code</div>
+
+  <div class="row pb-3">
+    <div class="col-6">
+      <div class="card card-basic">
+        <div class="card-body">
+          <form [formGroup]="fg">
+            <div class="form-group">
+              <label for="">Promo Code</label>
+              <input type="text" class="form-control custom-input" formControlName="name" placeholder="WELCOME20" />
+            </div>
+            <div class="form-group">
+              <label for="">Limit Usage per User</label>
+              <input type="number" class="form-control custom-input" formControlName="user_limit" placeholder="1" />
+            </div>
+            <div class="form-group">
+              <label for="">Limit Promo Usage</label>
+              <input type="number" class="form-control custom-input" formControlName="total_limit" placeholder="30" />
+            </div>
+            <div class="form-group">
+              <label for="">Value (in percentage)</label>
+              <input type="number" class="form-control custom-input" formControlName="value" placeholder="50" />
+            </div>
+          </form>
+          <div class="text-right">
+            <button class="btn btn-green" (click)="submit()" [disabled]="this.fg.invalid">Add Promo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

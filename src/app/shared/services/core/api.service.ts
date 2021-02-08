@@ -41,6 +41,11 @@ export const genericRetryStrategy = ({
   providedIn: 'root',
 })
 export class ApiService {
+  private httpOptions = {
+    headers: new HttpHeaders({}),
+    responseType: 'text',
+  };
+
   constructor(private http: HttpClient) {}
 
   getData(
@@ -48,12 +53,20 @@ export class ApiService {
     pagination: Page = null,
     ordering: Sort = null,
     filter: object = null,
-    headers: any = null
+    headers: any = null,
+    csv: any = null
   ): Observable<any> {
     const params = this.prepareHttpParams(pagination, ordering, filter);
     const options = { params };
     if (headers) {
       Object.assign(options, { headers });
+    }
+    if (csv) {
+      const requestOptions: Object = {
+        /* other options here */
+        responseType: 'text',
+      };
+      Object.assign(options, requestOptions);
     }
 
     return this.http.get(`${environment.api_url}${path}`, options).pipe(
@@ -81,7 +94,7 @@ export class ApiService {
       Object.assign(options, { headers });
     }
 
-    return this.http.get(`${path}`, options).pipe(
+    return this.http.get(`${environment.api_url}${path}`, options).pipe(
       map((res: Response) => {
         return res;
       }),
@@ -200,8 +213,8 @@ export class ApiService {
     }
 
     if (!_.isEmpty(ordering)) {
-      params = params.append('order_by', ordering.orderBy);
-      params = params.append('order_type', ordering.orderType);
+      params = params.append('order_by', ordering.order_by);
+      params = params.append('order_type', ordering.order_type);
     }
 
     if (!_.isEmpty(filter)) {

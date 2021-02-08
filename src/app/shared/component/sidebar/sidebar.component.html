@@ -1,0 +1,38 @@
+<nav class="sidebar" [ngClass]="{ sidebarPushRight: isActive, collapsed: collapsed }">
+  <div class="logo-area">
+    <img src="../../../../../assets/img/artisan-logo.png" width="150px" alt="" />
+    <!--     <p>{{titleHeader}}</p> -->
+  </div>
+  <div class="list-group">
+    <a routerLink="/member/order" tooltip="Order" routerLinkActive="router-link-active" class="list-group-item"
+      ><i class="fa fa-home"></i><span>Order</span></a
+    >
+
+    <a routerLink="/member/chat" routerLinkActive="router-link-active" class="list-group-item">
+      <i class="fa fa-users"></i><span>Chat</span></a
+    >
+    <a routerLink="/member/user" routerLinkActive="router-link-active" class="list-group-item"
+      ><i class="fa fa-file-video"></i><span>User</span></a
+    >
+
+    <a routerLink="/member/promo" routerLinkActive="router-link-active" class="list-group-item"
+      ><i class="fa fa-gamepad"></i><span>Promo</span></a
+    >
+    <a routerLink="/member/admin" routerLinkActive="router-link-active" class="list-group-item"
+      ><i class="fa fa-gamepad"></i><span>Admin</span></a
+    >
+    <a routerLink="/member/notification" routerLinkActive="router-link-active" class="list-group-item"
+      ><i class="fa fa-gamepad"></i><span>Notification</span></a
+    >
+  </div>
+  <!--  <div class="credits text-center">
+      <a>© PT. KREASI KODE DIGITAL, 2019</a>
+    </div> -->
+  <!--   <div
+    class="toggle-button text-center m-0"
+    [ngClass]="{ collapsed: collapsed }"
+    (click)="toggleCollapsed()"
+  >
+    <i class="fa fa-fw fa-angle-double-{{ collapsed ? 'right' : 'left' }}"></i>
+  </div> -->
+</nav>

@@ -1,21 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeComponent } from './home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { PromoAddComponent } from './promo-add.component';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('PromoAddComponent', () => {
+  let component: PromoAddComponent;
+  let fixture: ComponentFixture<PromoAddComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent],
-      imports: [HttpClientModule],
+      declarations: [PromoAddComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(PromoAddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
