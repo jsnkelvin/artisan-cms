@@ -30,7 +30,7 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //console.log('user list')
+    // console.log('user list')
     this.getData({ offset: 0 });
     // this.initForm();
   }
@@ -69,7 +69,7 @@ export class UserListComponent implements OnInit {
   downCSV() {
     this.api.getData('admin/users/csv_download', null, null, null, null, true).subscribe((res) => {
       console.log('res', res);
-      var blob = new Blob([res], { type: 'text/csv' });
+      const blob = new Blob([res], { type: 'text/csv' });
       saveAs(blob, 'this.csv');
       console.log('res', res);
     });

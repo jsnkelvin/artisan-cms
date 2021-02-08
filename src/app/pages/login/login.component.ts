@@ -13,8 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  submitted: Boolean = false;
-  show: boolean = false;
+  submitted = false;
+  show = false;
   constructor(
     public fb: FormBuilder,
     public gs: GlobalService,
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
           if(err.error.result.code === "AU002"){
             this.toast.warning("Pasword you entered is wrong","Failed")
           } */
-          //this.toast.error(err.error.result.message, "Error");
+          // this.toast.error(err.error.result.message, "Error");
         }
       );
     }

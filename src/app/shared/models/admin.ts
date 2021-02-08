@@ -8,5 +8,5 @@ export interface Admin {
   gender?: string;
   status?: string;
   createdAt?: Date;
-  isAdmin?: Boolean;
+  isAdmin?: boolean;
 }
