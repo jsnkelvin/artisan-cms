@@ -27,6 +27,7 @@ export class PromoAddComponent implements OnInit {
   initForm() {
     this.fg = new FormGroup({
       name: new FormControl('', Validators.required),
+      code: new FormControl('', Validators.required),
       total_limit: new FormControl('', Validators.required),
       user_limit: new FormControl('', Validators.required),
       value: new FormControl('', Validators.required),

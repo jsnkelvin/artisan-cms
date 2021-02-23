@@ -36,6 +36,7 @@ export class PromoListComponent implements OnInit {
   }
 
   getData(pageInfo) {
+    console.log(pageInfo);
     this.page.pageNumber = pageInfo.offset + 1;
     this.loader.start();
     this.api
@@ -60,5 +61,11 @@ export class PromoListComponent implements OnInit {
 
   addPromo() {
     this.router.navigate(['member/promo/add']);
+  }
+
+  rowClicked($event) {
+    if($event.type === 'click') {
+      this.router.navigate(['member/promo', $event.row.promo_id]);
+    }
   }
 }

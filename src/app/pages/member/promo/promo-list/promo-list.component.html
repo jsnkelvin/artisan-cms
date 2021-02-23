@@ -23,32 +23,26 @@
             [limit]="page.size"
             (page)="getData($event)"
             [externalPaging]="true"
+            (activate)="rowClicked($event)"
           >
-            <ngx-datatable-column name="Promo Name" prop="promo_id">
+            <ngx-datatable-column name="PROMO NAME" prop="name">
               <ng-template let-value="value" ngx-datatable-cell-template>
                 <strong>{{ value }}</strong>
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Promo Code" prop="name">
+            <ngx-datatable-column name="PROMO CODE" prop="code">
               <ng-template let-value="value" ngx-datatable-cell-template>
                 <strong>{{ value }}</strong>
               </ng-template>
             </ngx-datatable-column>
-
-            <ngx-datatable-column name="Discount" prop="value">
-              <ng-template let-value="value" ngx-datatable-cell-template>
-                <strong>{{ value }}%</strong>
-              </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="Used" prop="email">
+            <ngx-datatable-column name="PROMO USED" prop="usage">
               <ng-template let-value="value" ngx-datatable-cell-template>
                 <strong>{{ value }}</strong>
               </ng-template>
             </ngx-datatable-column>
-
-            <ngx-datatable-column name="Created Date" prop="created_at">
+            <ngx-datatable-column name="CREATED DATE" prop="created_at">
               <ng-template let-value="value" ngx-datatable-cell-template>
-                {{ value | date: 'medium' }}
+                {{ value | date:'dd MMM yyyy' }}
               </ng-template>
             </ngx-datatable-column>
             <!--    <ngx-datatable-column name="Action" prop="action">

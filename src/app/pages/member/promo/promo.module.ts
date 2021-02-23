@@ -16,12 +16,12 @@ const routes: Routes = [
     component: PromoListComponent,
   },
   {
-    path: 'detail/:id',
-    component: PromoDetailComponent,
-  },
-  {
     path: 'add',
     component: PromoAddComponent,
+  },
+  {
+    path: ':id',
+    component: PromoDetailComponent,
   },
 ];
 
