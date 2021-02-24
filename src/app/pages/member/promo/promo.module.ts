@@ -9,6 +9,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PromoAddComponent } from './promo-add/promo-add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
     SidebarModule,
     NgxDatatableModule,
     ModalModule.forRoot(),
+    BsDatepickerModule.forRoot()
   ],
 })
 export class PromoModule {}

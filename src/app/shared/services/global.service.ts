@@ -3,10 +3,22 @@ import * as _ from 'lodash';
 import { Observable, of } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 
+import { BsDatepickerConfig } from "ngx-bootstrap/datepicker";
+
 @Injectable({
   providedIn: 'root',
 })
 export class GlobalService {
+
+  datePickerConfig: Partial<BsDatepickerConfig> = {
+    isAnimated: true,
+    adaptivePosition: true,
+    dateInputFormat: "YYYY-MM-DD",
+    containerClass: "theme-red",
+    minDate: new Date(),
+    showWeekNumbers: false
+  };
+
   constructor() {}
 
   log(message: string, data: any = null, type: string = 'log') {

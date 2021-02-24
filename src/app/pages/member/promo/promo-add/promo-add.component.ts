@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '@shared/services/core/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { GlobalService } from '../../../../shared/services';
 
 @Component({
   selector: 'app-promo-add',
@@ -17,7 +18,8 @@ export class PromoAddComponent implements OnInit {
     private router: Router,
     private toast: ToastrService,
     private api: ApiService,
-    private loader: NgxUiLoaderService
+    private loader: NgxUiLoaderService,
+    public gs: GlobalService
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +33,7 @@ export class PromoAddComponent implements OnInit {
       total_limit: new FormControl('', Validators.required),
       user_limit: new FormControl('', Validators.required),
       value: new FormControl('', Validators.required),
+      valid_date: new FormControl('', Validators.required)
     });
   }
 
