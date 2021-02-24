@@ -35,9 +35,11 @@
                 <strong>{{ value }}</strong>
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="STATUS" prop="status">
+            <ngx-datatable-column name="STATUS" prop="is_admin">
               <ng-template let-value="value" ngx-datatable-cell-template>
-                {{ value }}
+                <span class="{{ value ? 'text-success' : 'text-danger' }}">
+                  {{ value ? 'Replied' : 'New Message' }}
+                </span>
               </ng-template>
             </ngx-datatable-column>
           </ngx-datatable>
