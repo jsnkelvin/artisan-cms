@@ -47,7 +47,7 @@ export class PromoDetailComponent implements OnInit {
     this.loader.start();
     this.api
       .getData(
-        'admin/promo/5',
+        `admin/promo/${this.id}`,
       )
       .subscribe(
         (res) => {
