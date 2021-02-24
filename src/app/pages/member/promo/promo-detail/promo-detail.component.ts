@@ -25,7 +25,10 @@ export class PromoDetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private loader: NgxUiLoaderService,
     private api: ApiService
-  ) {}
+  ) {
+    this.page.pageNumber = 0;
+    this.page.size = 5;
+  }
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params.id;
