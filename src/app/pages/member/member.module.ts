@@ -26,6 +26,12 @@ const routes: Routes = [
         canActivate: [AuthGuardGuard],
         data: { roles: [Roles.all] },
       },
+      {
+        path: 'chat',
+        loadChildren: () => import('./chat/chat.module').then((m) => m.ChatModule),
+        canActivate: [AuthGuardGuard],
+        data: { roles: [Roles.all] },
+      },
     ],
   },
 ];

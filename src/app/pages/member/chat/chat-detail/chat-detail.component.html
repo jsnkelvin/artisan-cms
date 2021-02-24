@@ -1,0 +1,55 @@
+<div class="container-fluid">
+
+  <div class="page-title">
+    <i class="fas fa-arrow-left mr-3" (click)="back()"></i>
+    Chat Room :: {{ userId }}
+  </div>
+
+  <div class="row pb-3">
+    <div class="col">
+      <div class="card card-basic">
+        <div class="card-body" style="height: 73vh; overflow-y: auto;" #scrollMe>
+          <ul class="list-unstyled m-0">
+            <li class="media py-1" *ngFor="let c of listChat">
+              <img src="https://cdn.zeplin.io/5ff5cb5f5d8ad159b08fa45f/assets/1A445447-F6D2-446A-8D33-8CDF7A6A6C0F.svg"
+                class="mr-3 rounded-circle" *ngIf="!c.is_admin" />
+              <div class="media-body {{ c.is_admin ? 'text-right' : '' }}">
+                <!-- <div class="row">
+                  <div class="col">
+                    {{ userId }}
+                  </div>
+                </div> -->
+                <div class="row">
+                  <div class="col">
+                    <p class="mb-0 {{ c.is_admin ? 'chat-bubble-me' : 'chat-bubble-other' }}">
+                      {{ c.message }}
+                    </p>
+                    <small>{{ c.created_at | date:'dd/MM/y @ HH:mm' }}</small>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body border-top">
+          <!-- <div class="row">
+            <div class="col-12">
+              Templates:
+            </div>
+          </div> -->
+          <form [formGroup]="fg" (ngSubmit)="sendMessage()" class="row px-3">
+            <input type="text" class="form-control custom-input col mr-1 rounded"
+              placeholder="Send Message Here ..." formControlName="message" />
+            <button class="btn btn-green rounded-circle">
+              <i class="fas fa-image"></i>
+            </button>
+            <button class="btn btn-green rounded-circle ml-1" type="submit">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

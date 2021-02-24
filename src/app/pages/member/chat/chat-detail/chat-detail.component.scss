@@ -1,0 +1,23 @@
+.chat-bubble-me {
+  margin-left: auto;
+  width: fit-content;
+  padding: 10px;
+  padding-right: 15px;
+  color: white;
+  background-color: #83c5be;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.chat-bubble-other {
+  margin-right: auto;
+  width: fit-content;
+  padding: 10px;
+  padding-left: 15px;
+  color: black;
+  background-color: #edf6f9;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
