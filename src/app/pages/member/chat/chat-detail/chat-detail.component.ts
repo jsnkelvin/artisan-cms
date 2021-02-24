@@ -13,6 +13,7 @@ export class ChatDetailComponent implements OnInit {
 
   userId = null;
   listChat = [];
+  listTemplate = [];
 
   fg: FormGroup;
 
@@ -27,6 +28,7 @@ export class ChatDetailComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.activatedRoute.snapshot.params.id;
     this.initForm();
+    this.loadTemplate();
     this.loadChat();
   }
 
@@ -49,6 +51,18 @@ export class ChatDetailComponent implements OnInit {
     });
   }
 
+  loadTemplate(): void {
+    this.api.getData(`admin/template`).subscribe(
+      (res) => {
+        console.log('res', res);
+        this.listTemplate = res.response.rows;
+      },
+      (err) => {
+        console.log('err', err);
+      }
+    );
+  }
+
   loadChat(): void {
     this.api.getData(`admin/chat/getMessages/?uid=${this.userId}`).subscribe(
       (res) => {
@@ -62,7 +76,10 @@ export class ChatDetailComponent implements OnInit {
     );
   }
 
-  sendMessage(): void {
+  sendMessage(msg = null): void {
+    if (msg) {
+      this.fg.controls.message.patchValue(msg);
+    }
     this.api.postData(`admin/chat`, this.fg.value).subscribe(
       (res) => {
         console.log('res', res);

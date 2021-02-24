@@ -8,7 +8,7 @@
   <div class="row pb-3">
     <div class="col">
       <div class="card card-basic">
-        <div class="card-body" style="height: 73vh; overflow-y: auto;" #scrollMe>
+        <div class="card-body" style="height: 68vh; overflow-y: auto;" #scrollMe>
           <ul class="list-unstyled m-0">
             <li class="media py-1" *ngFor="let c of listChat">
               <img src="https://cdn.zeplin.io/5ff5cb5f5d8ad159b08fa45f/assets/1A445447-F6D2-446A-8D33-8CDF7A6A6C0F.svg"
@@ -32,11 +32,13 @@
           </ul>
         </div>
         <div class="card-body border-top">
-          <!-- <div class="row">
-            <div class="col-12">
-              Templates:
+          <div class="row mb-3">
+            <div class="col-12 scroll-item">
+              <a class="btn chat-template mx-1" *ngFor="let t of listTemplate" (click)="sendMessage(t.message)">
+                {{ t.message }}
+              </a>
             </div>
-          </div> -->
+          </div>
           <form [formGroup]="fg" (ngSubmit)="sendMessage()" class="row px-3">
             <input type="text" class="form-control custom-input col mr-1 rounded"
               placeholder="Send Message Here ..." formControlName="message" />
