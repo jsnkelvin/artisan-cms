@@ -1,1 +1,152 @@
-<p>order-detail works!</p>
+<div class="container-fluid">
+
+  <div class="page-title">
+    <button class="btn rounded-circle" (click)="back()">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    Transaction Detail
+  </div>
+
+  <div class="row pb-3">
+    <div class="col-8">
+      <div class="card card-basic">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div class="col-12 text-muted">ORDER ID</div>
+                <div class="col">{{ detail?.transaction_code }}</div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col-12 text-muted">VALUE</div>
+                <div class="col">{{ detail?.price | currency:'Rp. ':'symbol':'0.0' }}</div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col-12 text-muted">NEGATIVE REQUEST</div>
+                <div class="col">{{ detail?.negative?.name }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col">
+              <div class="row">
+                <div class="col-12 text-muted">TRANSACTION DATE</div>
+                <div class="col">{{ detail?.created_at | date:'dd MMM yyyy' }}</div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col-12 text-muted">RECEIVED DATE</div>
+                <div class="col">{{ detail?.received_date | date:'dd MMM yyyy' }}</div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col-12 text-muted">ORDER TYPE</div>
+                <div class="col">{{ detail?.order_type?.name }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card card-basic">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-xl-6 col-12">
+              <div class="row">
+                <div class="col-12 text-muted">ORDER STATUS</div>
+                <div class="col">{{ detail?.transaction_status?.name }}</div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-12">
+              <div class="row">
+                <div class="col-12 text-muted">&nbsp;</div>
+                <div class="col">
+                  <u>See Proof of Shipment</u>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col">
+              <div class="row">
+                <div class="col">
+                  <button class="rounded btn btn-green col-12">
+                    Film Received, Going to Process
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h5 class="mt-3">
+    <small class="float-right">Total Roll: {{ detail?.films?.length }}</small>
+    Film Roll Details
+  </h5>
+
+  <div class="row pb-3">
+    <div class="col-xl-3 col-md-4 col-sm-6 col-12" *ngFor="let f of detail?.films; let i = index">
+      <div class="card card-basic">
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-6 text-muted">
+              <b>FILM {{ f?.order }}</b>
+            </div>
+            <div class="col-6 text-right">
+              <u style="cursor: pointer;">Edit</u>
+            </div>
+          </div>
+          <div class="row mb-2 mt-3">
+            <div class="col-6 text-muted">FILM BRAND</div>
+            <div class="col-6 text-right">{{ f?.film_brand }}</div>
+          </div>
+          <div class="row my-2">
+            <div class="col-6 text-muted">FILM TYPE</div>
+            <div class="col-6 text-right">{{ f?.film_type.name }}</div>
+          </div>
+          <div class="row my-2">
+            <div class="col-6 text-muted">FORMAT</div>
+            <div class="col-6 text-right">{{ f?.film_format?.name }}</div>
+          </div>
+          <div class="row my-2">
+            <div class="col-6 text-muted">SCAN TYPE</div>
+            <div class="col-6 text-right">{{ f?.scan_type?.name }}</div>
+          </div>
+          <div class="row my-2">
+            <div class="col-6 text-muted">SCANNER</div>
+            <div class="col-6 text-right">{{ f?.scanner?.name }}</div>
+          </div>
+          <div class="row my-2">
+            <div class="col-6 text-muted">PROCESS</div>
+            <div class="col-6 text-right">{{ f?.push_pull?.name || 'Normal' }}</div>
+          </div>
+          <div class="row my-2">
+            <div class="col-6 text-muted">AMOUNT</div>
+            <div class="col-6 text-right">{{ f?.push_pull_value || '-' }}</div>
+          </div>
+          <div class="row mt-2 mb-3">
+            <div class="col-6 text-muted">NO. OF ROLLS</div>
+            <div class="col-6 text-right">{{ f?.number_of_rolls }}</div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-12 text-muted">
+              <b>ADDITIONAL NOTES</b>
+            </div>
+            <div class="col-12">{{ f?.additional_notes }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

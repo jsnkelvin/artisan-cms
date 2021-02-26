@@ -17,10 +17,18 @@
       <button class="btn border-none" disabled>See Orders</button>
       <input type="text" class="form-control col-3 d-inline mx-2" (bsValueChange)="getData()"
         [(ngModel)]="dateRange" bsDaterangepicker [bsConfig]="gs.datePickerRangeConfig" />
-      <button class="rouded btn btn-green" (click)="downloadCSV()">
+      <button class="rounded btn btn-green" (click)="downloadCSV()">
         <i class="fas fa-download"></i>
         Export CSV
       </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h5 class="mt-4 text-right">
+        Revenue: Rp. 0
+      </h5>
     </div>
   </div>
 
