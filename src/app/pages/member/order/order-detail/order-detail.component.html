@@ -103,7 +103,7 @@
               <b>FILM {{ f?.order }}</b>
             </div>
             <div class="col-6 text-right">
-              <u style="cursor: pointer;">Edit</u>
+              <u style="cursor: pointer;" (click)="showModal(f)">Edit</u>
             </div>
           </div>
           <div class="row mb-2 mt-3">
@@ -149,4 +149,83 @@
     </div>
   </div>
 
+</div>
+
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal"
+     class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-auto-name" class="modal-title pull-left">FILM {{ detailEdit?.order }}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="fg">
+          <div class="form-group">
+            <label for="">Film Brand</label>
+            <input type="text" class="form-control custom-input" formControlName="film_brand" placeholder="Fuji" />
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-6">
+                <label for="">Film Type</label>
+                <select class="col-12" formControlName="film_typeName">
+                  <option value="{{ f.film_type_id }}" *ngFor="let f of filmTypeData">{{ f.name }}</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="">Format</label>
+                <select class="col-12" formControlName="film_formatName">
+                  <option value="{{ f.film_format_id }}" *ngFor="let f of filmFormatData">{{ f.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-6">
+                <label for="">Film Type</label>
+                <select class="col-12" formControlName="scan_typeName">
+                  <option value="{{ s.scan_type_id }}" *ngFor="let s of scanTypeData">{{ s.name }}</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="">Format</label>
+                <select class="col-12" formControlName="scannerName">
+                  <option value="{{ s.scanner_id }}" *ngFor="let s of scannerData">{{ s.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-6">
+                <label for="">Process</label>
+                <input type="text" class="form-control custom-input" formControlName="push_pullName" placeholder="Push" />
+              </div>
+              <div class="col-6">
+                <label for="">Amount</label>
+                <input type="number" class="form-control custom-input" formControlName="push_pull_value" placeholder="1" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Number of Rolls</label>
+            <input type="number" class="form-control custom-input" formControlName="number_of_rolls" placeholder="1" />
+          </div>
+          <div class="form-group">
+            <label for="">Additional Notes</label>
+            <input type="text" class="form-control custom-input" formControlName="additional_notes" placeholder="Make it brighter!" />
+          </div>
+          <div class="form-group">
+            <button class="rounded btn btn-green col-12" (click)="saveFilm()">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

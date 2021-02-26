@@ -45,9 +45,7 @@ export class OrderListComponent implements OnInit {
     }
   }
 
-  getStatus(pageInfo = { offset: 0 }) {
-    console.log(pageInfo);
-    this.page.pageNumber = pageInfo.offset + 1;
+  getStatus() {
     this.loader.start();
     this.api
       .getData(

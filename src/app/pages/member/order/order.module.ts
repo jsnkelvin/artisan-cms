@@ -8,6 +8,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ButtonsModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    ModalModule.forRoot(),
     NgxDatatableModule,
     FormsModule,
     ReactiveFormsModule,
