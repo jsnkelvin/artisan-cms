@@ -12,11 +12,23 @@ import { ApiService } from '../../../../shared/services';
 })
 export class OrderDetailComponent implements OnInit {
 
+  @ViewChild('modalInputProofShipment', { static: false }) modalInputProofShipment: ModalDirective;
+  isModalInputProofShipment = false;
+  disableInputProofShipment = false;
+
+  fgProofShipment: FormGroup;
+
+  @ViewChild('modalShareFilm', { static: false }) modalShareFilm: ModalDirective;
+  isModalShareFilm = false;
+
+  @ViewChild('modalGoToProcess', { static: false }) modalGoToProcess: ModalDirective;
+  isModalGoToProcess = false;
+
   @ViewChild('modalEditFilm', { static: false }) modalEditFilm: ModalDirective;
   isModalEditFilmShown = false;
 
-  fg: FormGroup;
-  detailEdit = null;
+  fgFilmEdit: FormGroup;
+  filmEdit = null;
 
   filmTypeData = [];
   filmFormatData = [];
@@ -66,17 +78,17 @@ export class OrderDetailComponent implements OnInit {
   }
 
   showModalEditFilm(data): void {
-    this.detailEdit = data;
-    this.fg = new FormGroup({
-      film_brand: new FormControl(this.detailEdit.film_brand, Validators.required),
-      film_typeName: new FormControl(this.detailEdit.film_type.name, Validators.required),
-      film_formatName: new FormControl(this.detailEdit.film_format.name, Validators.required),
-      scan_typeName: new FormControl(this.detailEdit.scan_type.name, Validators.required),
-      scannerName: new FormControl(this.detailEdit.scanner.name, Validators.required),
-      push_pullName: new FormControl(this.detailEdit.push_pull.name, Validators.required),
-      push_pull_value: new FormControl(this.detailEdit.push_pull_value, Validators.required),
-      number_of_rolls: new FormControl(this.detailEdit.number_of_rolls, Validators.required),
-      additional_notes: new FormControl(this.detailEdit.additional_notes, Validators.required)
+    this.filmEdit = data;
+    this.fgFilmEdit = new FormGroup({
+      film_brand: new FormControl(this.filmEdit?.film_brand, Validators.required),
+      film_typeName: new FormControl(this.filmEdit?.film_type?.name, Validators.required),
+      film_formatName: new FormControl(this.filmEdit?.film_format?.name, Validators.required),
+      scan_typeName: new FormControl(this.filmEdit?.scan_type?.name, Validators.required),
+      scannerName: new FormControl(this.filmEdit?.scanner?.name, Validators.required),
+      push_pullName: new FormControl(this.filmEdit?.push_pull?.name, Validators.required),
+      push_pull_value: new FormControl(this.filmEdit?.push_pull_value, Validators.required),
+      number_of_rolls: new FormControl(this.filmEdit?.number_of_rolls, Validators.required),
+      additional_notes: new FormControl(this.filmEdit?.additional_notes, Validators.required)
     });
     this.isModalEditFilmShown = true;
   }
@@ -167,6 +179,107 @@ export class OrderDetailComponent implements OnInit {
 
   saveFilm(): void {
     this.hideModalEditFilm();
+    this.getDetail();
+  }
+
+  showModalGoToProcess(): void {
+    this.isModalGoToProcess = true;
+  }
+ 
+  hideModalGoToProcess(): void {
+    this.modalGoToProcess.hide();
+  }
+ 
+  onHiddenGoToProcess(): void {
+    this.isModalGoToProcess = false;
+  }
+
+  goToProcess(): void {
+    this.api
+      .putData(
+        `admin/transactions/status/processing/${this.id}`
+      )
+      .subscribe(
+        (res) => {
+          console.log('res', res);
+          this.hideModalGoToProcess();
+          this.getDetail();
+          this.loader.stop();
+        },
+        (err) => {
+          console.log('err', err);
+          this.loader.stop();
+        }
+      );
+  }
+
+  showModalShareFilm(): void {
+    this.isModalShareFilm = true;
+  }
+ 
+  hideModalShareFilm(): void {
+    this.modalShareFilm.hide();
+  }
+ 
+  onHiddenShareFilm(): void {
+    this.isModalShareFilm = false;
+  }
+
+  shareFilm(): void {
+    this.api
+      .putData(
+        `admin/transactions/status/shared/${this.id}`
+      )
+      .subscribe(
+        (res) => {
+          console.log('res', res);
+          this.hideModalShareFilm();
+          this.getDetail();
+          this.loader.stop();
+        },
+        (err) => {
+          console.log('err', err);
+          this.loader.stop();
+        }
+      );
+  }
+
+  showModalInputProofShipment(disabled = false): void {
+    this.disableInputProofShipment = disabled;
+    this.fgProofShipment = new FormGroup({
+      courier: new FormControl({ value: this.detail.courier, disabled: this.disableInputProofShipment }, Validators.required,),
+      courier_receipt: new FormControl({ value: this.detail.courier_receipt, disabled: this.disableInputProofShipment }, Validators.required)
+    });
+    this.isModalInputProofShipment = true;
+  }
+ 
+  hideModalInputProofShipment(): void {
+    this.modalInputProofShipment.hide();
+  }
+ 
+  onHiddenInputProofShipment(): void {
+    this.isModalInputProofShipment = false;
+  }
+
+  inputProofShipment(): void {
+    this.api
+      .putData(
+        `admin/transactions/courier/${this.id}`,
+        this.fgProofShipment.value
+      )
+      .subscribe(
+        (res) => {
+          console.log('res', res);
+          this.hideModalShareFilm();
+          this.getDetail();
+          this.loader.stop();
+        },
+        (err) => {
+          console.log('err', err);
+          this.loader.stop();
+        }
+      );
+    this.hideModalInputProofShipment();
     this.getDetail();
   }
 

@@ -4,7 +4,7 @@
     <button class="btn rounded-circle" (click)="back()">
       <i class="fas fa-arrow-left"></i>
     </button>
-    Transaction Detail
+    {{ detail?.transaction_code }} Transaction Details
   </div>
 
   <div class="row pb-3">
@@ -68,7 +68,10 @@
               <div class="row">
                 <div class="col-12 text-muted">&nbsp;</div>
                 <div class="col">
-                  <u>See Proof of Shipment</u>
+                  <u *ngIf="detail?.courier && detail?.courier_receipt"
+                    (click)="showModalInputProofShipment(true)" style="cursor: pointer;">
+                    See Proof of Shipment
+                  </u>
                 </div>
               </div>
             </div>
@@ -76,9 +79,23 @@
           <div class="row mt-3">
             <div class="col">
               <div class="row">
+                <div class="col-12 text-muted" *ngIf="detail?.transaction_status?.id == 1">&nbsp;</div>
                 <div class="col">
-                  <button class="rounded btn btn-green col-12">
+                  <div *ngIf="detail?.transaction_status?.id == 1">&nbsp;</div>
+                  <button class="rounded btn btn-green col-12"
+                    (click)="showModalGoToProcess()"
+                    *ngIf="detail?.transaction_status?.id == 2">
                     Film Received, Going to Process
+                  </button>
+                  <button class="rounded btn btn-green col-12"
+                    (click)="showModalShareFilm()"
+                    *ngIf="detail?.transaction_status?.id == 3">
+                    Share Film Gallery
+                  </button>
+                  <button class="rounded btn btn-green col-12"
+                    (click)="showModalInputProofShipment()"
+                    *ngIf="detail?.transaction_status?.id == 4">
+                    Input Proof of Shipment
                   </button>
                 </div>
               </div>
@@ -156,13 +173,13 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 id="dialog-auto-name" class="modal-title pull-left">FILM {{ detailEdit?.order }}</h4>
+        <h4 id="dialog-auto-name" class="modal-title pull-left">FILM {{ filmEdit?.order }}</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="hideModalEditFilm()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="fg">
+        <form [formGroup]="fgFilmEdit">
           <div class="form-group">
             <label for="">Film Brand</label>
             <input type="text" class="form-control custom-input" formControlName="film_brand" placeholder="Fuji" />
@@ -220,7 +237,86 @@
             <input type="text" class="form-control custom-input" formControlName="additional_notes" placeholder="Make it brighter!" />
           </div>
           <div class="form-group">
-            <button class="rounded btn btn-green col-12" (click)="saveFilm()">
+            <button class="rounded btn btn-green col-12" (click)="saveFilm()" [disabled]="!fgFilmEdit.valid">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isModalGoToProcess" [config]="{ show: true }" (onHidden)="onHiddenGoToProcess()" bsModal #modalGoToProcess="bs-modal"
+     class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-auto-name" class="modal-title pull-left">Are you sure the film has arrived and will process it?</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModalGoToProcess()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row p-3">
+          <button class="rounded btn btn-outline-danger col mr-2" (click)="hideModalGoToProcess()">
+            No
+          </button>
+          <button class="rounded btn btn-green col ml-2" (click)="goToProcess()">
+            Yes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isModalShareFilm" [config]="{ show: true }" (onHidden)="onHiddenShareFilm()" bsModal #modalShareFilm="bs-modal"
+     class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-auto-name" class="modal-title pull-left">Are you sure you want to share the photo results?</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModalShareFilm()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row p-3">
+          <button class="rounded btn btn-outline-danger col mr-2" (click)="hideModalShareFilm()">
+            No
+          </button>
+          <button class="rounded btn btn-green col ml-2" (click)="shareFilm()">
+            Yes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isModalInputProofShipment" [config]="{ show: true }" (onHidden)="onHiddenInputProofShipment()" bsModal #modalInputProofShipment="bs-modal"
+     class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-auto-name" class="modal-title pull-left">Proof Of Shipment</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModalInputProofShipment()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="fgProofShipment">
+          <div class="form-group">
+            <label for="">Courier</label>
+            <input type="text" class="form-control custom-input" formControlName="courier" placeholder="JNE" />
+          </div>
+          <div class="form-group">
+            <label for="">Proof of Shipment</label>
+            <input type="text" class="form-control custom-input" formControlName="courier_receipt" placeholder="ASDF-1234" />
+          </div>
+          <div class="form-group" *ngIf="!disableInputProofShipment">
+            <button class="rounded btn btn-green col-12" (click)="inputProofShipment()" [disabled]="!fgProofShipment.valid">
               Save
             </button>
           </div>
