@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { ApiService } from '../../../../shared/services';
+import { ApiService, GlobalService } from '../../../../shared/services';
 
 @Component({
   selector: 'app-order-detail',
@@ -42,7 +42,8 @@ export class OrderDetailComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private loader: NgxUiLoaderService,
-    private api: ApiService
+    private api: ApiService,
+    private gs: GlobalService
   ) { }
 
   ngOnInit(): void {
@@ -178,8 +179,23 @@ export class OrderDetailComponent implements OnInit {
   }
 
   saveFilm(): void {
-    this.hideModalEditFilm();
-    this.getDetail();
+    this.api
+      .putData(
+        `admin/film/${this.filmEdit.film_id}`,
+        this.gs.getDirtyValues(this.fgFilmEdit)
+      )
+      .subscribe(
+        (res) => {
+          console.log('res', res);
+          this.hideModalEditFilm();
+          this.getDetail();
+          this.loader.stop();
+        },
+        (err) => {
+          console.log('err', err);
+          this.loader.stop();
+        }
+      );
   }
 
   showModalGoToProcess(): void {
@@ -270,7 +286,7 @@ export class OrderDetailComponent implements OnInit {
       .subscribe(
         (res) => {
           console.log('res', res);
-          this.hideModalShareFilm();
+          this.hideModalInputProofShipment();
           this.getDetail();
           this.loader.stop();
         },
@@ -279,8 +295,6 @@ export class OrderDetailComponent implements OnInit {
           this.loader.stop();
         }
       );
-    this.hideModalInputProofShipment();
-    this.getDetail();
   }
 
 }
