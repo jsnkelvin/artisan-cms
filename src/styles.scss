@@ -61,6 +61,25 @@ html {
   }
 }
 
+.btn-outline-green {
+  color: #006d77;
+  border-color: #ebebeb;
+}
+
+.btn-outline-green:hover {
+  color: #ebebeb;
+  background-color: #006d77;
+  border-color: #006d77;
+}
+
+.btn-outline-green:not(:disabled):not(.disabled):active,
+.btn-outline-green:not(:disabled):not(.disabled).active,
+.show > .btn-outline-green.dropdown-toggle {
+  color: #006d77;
+  background-color: #ebebeb;
+  border-color: #006d77;
+}
+
 /* form custom */
 
 .form-group label {

@@ -1,0 +1,84 @@
+<div class="container-fluid pb-3">
+  <div class="page-title">
+    Orders
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12 my-2">
+      <button class="btn border-none" disabled>Status</button>
+      <div class="btn-group" btnRadioGroup [(ngModel)]="status">
+        <button class="mx-2 rounded btn btn-outline-green" btnCheckbox
+          btnRadio="{{ s.status_id }}" *ngFor="let s of statusData" (click)="getData()">
+          {{ s.name }}
+        </button>
+      </div>
+    </div>
+    <div class="col-lg-12 my-2">
+      <button class="btn border-none" disabled>See Orders</button>
+      <input type="text" class="form-control col-3 d-inline mx-2" (bsValueChange)="getData()"
+        [(ngModel)]="dateRange" bsDaterangepicker [bsConfig]="gs.datePickerRangeConfig" />
+      <button class="rouded btn btn-green" (click)="downloadCSV()">
+        <i class="fas fa-download"></i>
+        Export CSV
+      </button>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <div class="card card-basic">
+        <div class="card-body">
+          <ngx-datatable
+            class="bootstrap"
+            [rows]="rows"
+            [columnMode]="'force'"
+            [headerHeight]="80"
+            [footerHeight]="'50'"
+            [rowHeight]="'auto'"
+            [count]="page.totalElements"
+            [limit]="page.size"
+            (page)="getData($event)"
+            [externalPaging]="true"
+            (activate)="rowClicked($event)"
+          >
+            <ngx-datatable-column name="ORDER ID" prop="transaction_code">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <strong>{{ value }}</strong>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="USERNAME" prop="name">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <strong>{{ value }}</strong>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="EMAIL" prop="email">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <strong>{{ value }}</strong>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="TRANSACTION DATE" prop="created_at">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                {{ value | date:'dd MMM yyyy' }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="REVEICED DATE" prop="received_date">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                {{ value | date:'dd MMM yyyy' }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="VALUE (IDR)" prop="price">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                {{ value | currency:'Rp. ':'symbol':'0.0' }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="TOTAL ROLL" prop="total_roll">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                {{ value }}
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

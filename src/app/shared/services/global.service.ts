@@ -19,6 +19,12 @@ export class GlobalService {
     showWeekNumbers: false
   };
 
+  datePickerRangeConfig: Partial<BsDatepickerConfig> = {
+    rangeInputFormat : 'DD MMM YYYY',
+    dateInputFormat: 'DD MMM YYYY',
+    showWeekNumbers: false
+  };
+
   constructor() {}
 
   log(message: string, data: any = null, type: string = 'log') {

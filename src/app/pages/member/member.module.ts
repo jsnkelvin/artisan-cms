@@ -15,6 +15,18 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'user', pathMatch: 'full' },
       {
+        path: 'order',
+        loadChildren: () => import('./order/order.module').then((m) => m.OrderModule),
+        canActivate: [AuthGuardGuard],
+        data: { roles: [Roles.all] },
+      },
+      {
+        path: 'chat',
+        loadChildren: () => import('./chat/chat.module').then((m) => m.ChatModule),
+        canActivate: [AuthGuardGuard],
+        data: { roles: [Roles.all] },
+      },
+      {
         path: 'user',
         loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
         canActivate: [AuthGuardGuard],
@@ -23,12 +35,6 @@ const routes: Routes = [
       {
         path: 'promo',
         loadChildren: () => import('./promo/promo.module').then((m) => m.PromoModule),
-        canActivate: [AuthGuardGuard],
-        data: { roles: [Roles.all] },
-      },
-      {
-        path: 'chat',
-        loadChildren: () => import('./chat/chat.module').then((m) => m.ChatModule),
         canActivate: [AuthGuardGuard],
         data: { roles: [Roles.all] },
       },
