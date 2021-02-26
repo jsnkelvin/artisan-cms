@@ -32,10 +32,10 @@ export class PromoListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('user list');
-    this.getData({ offset: 0 });
+    this.getData();
   }
 
-  getData(pageInfo) {
+  getData(pageInfo = { offset: 0 }) {
     console.log(pageInfo);
     this.page.pageNumber = pageInfo.offset + 1;
     this.loader.start();
