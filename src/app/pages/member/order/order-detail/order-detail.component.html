@@ -103,7 +103,7 @@
               <b>FILM {{ f?.order }}</b>
             </div>
             <div class="col-6 text-right">
-              <u style="cursor: pointer;" (click)="showModal(f)">Edit</u>
+              <u style="cursor: pointer;" (click)="showModalEditFilm(f)">Edit</u>
             </div>
           </div>
           <div class="row mb-2 mt-3">
@@ -151,13 +151,13 @@
 
 </div>
 
-<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal"
+<div *ngIf="isModalEditFilmShown" [config]="{ show: true }" (onHidden)="onHiddenEditFilm()" bsModal #modalEditFilm="bs-modal"
      class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h4 id="dialog-auto-name" class="modal-title pull-left">FILM {{ detailEdit?.order }}</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModalEditFilm()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

@@ -12,8 +12,8 @@ import { ApiService } from '../../../../shared/services';
 })
 export class OrderDetailComponent implements OnInit {
 
-  @ViewChild('autoShownModal', { static: false }) autoShownModal: ModalDirective;
-  isModalShown = false;
+  @ViewChild('modalEditFilm', { static: false }) modalEditFilm: ModalDirective;
+  isModalEditFilmShown = false;
 
   fg: FormGroup;
   detailEdit = null;
@@ -65,7 +65,7 @@ export class OrderDetailComponent implements OnInit {
       );
   }
 
-  showModal(data): void {
+  showModalEditFilm(data): void {
     this.detailEdit = data;
     this.fg = new FormGroup({
       film_brand: new FormControl(this.detailEdit.film_brand, Validators.required),
@@ -78,15 +78,15 @@ export class OrderDetailComponent implements OnInit {
       number_of_rolls: new FormControl(this.detailEdit.number_of_rolls, Validators.required),
       additional_notes: new FormControl(this.detailEdit.additional_notes, Validators.required)
     });
-    this.isModalShown = true;
+    this.isModalEditFilmShown = true;
   }
  
-  hideModal(): void {
-    this.autoShownModal.hide();
+  hideModalEditFilm(): void {
+    this.modalEditFilm.hide();
   }
  
-  onHidden(): void {
-    this.isModalShown = false;
+  onHiddenEditFilm(): void {
+    this.isModalEditFilmShown = false;
   }
 
   getFilmType() {
@@ -166,7 +166,7 @@ export class OrderDetailComponent implements OnInit {
   }
 
   saveFilm(): void {
-    this.hideModal();
+    this.hideModalEditFilm();
     this.getDetail();
   }
 
