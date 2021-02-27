@@ -38,6 +38,12 @@ const routes: Routes = [
         canActivate: [AuthGuardGuard],
         data: { roles: [Roles.all] },
       },
+      {
+        path: 'notification',
+        loadChildren: () => import('./notification/notification.module').then((m) => m.NotificationModule),
+        canActivate: [AuthGuardGuard],
+        data: { roles: [Roles.all] },
+      },
     ],
   },
 ];
