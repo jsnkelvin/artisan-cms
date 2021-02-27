@@ -45,12 +45,12 @@ export class NotificationAddComponent implements OnInit {
       (res) => {
         //  console.log('res',res);
         this.loader.stop();
-        this.toast.success('Add Promo Code Success');
+        this.toast.success('Add Push Notification Success');
         this.router.navigate(['member/notification']);
       },
       (err) => {
         this.loader.stop();
-        this.toast.error('Failed to Add Promo Code');
+        this.toast.error('Failed to Add Push Notification');
       }
     );
   }
