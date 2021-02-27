@@ -31,7 +31,6 @@ export class PromoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('user list');
     this.getData();
   }
 
