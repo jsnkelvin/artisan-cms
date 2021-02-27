@@ -13,7 +13,7 @@ const routes: Routes = [
     path: '',
     component: MemberComponent,
     children: [
-      { path: '', redirectTo: 'user', pathMatch: 'full' },
+      { path: '', redirectTo: 'order', pathMatch: 'full' },
       {
         path: 'order',
         loadChildren: () => import('./order/order.module').then((m) => m.OrderModule),

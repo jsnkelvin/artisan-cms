@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.authSrv.isAuthenticated([]).subscribe((exists) => {
       if (exists) {
-        this.router.navigate(['/member/user'], { skipLocationChange: true });
+        this.router.navigate(['/member']);
       }
     });
   }
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
           if (res.response) {
             this.gs.log('--> sukses login', res.result);
             this.loading.stop();
-            this.router.navigate(['/member/user']);
+            this.router.navigate(['/member']);
             //   this.toast.success(res.result.message, "Success");
           } else {
             this.loading.stop();
