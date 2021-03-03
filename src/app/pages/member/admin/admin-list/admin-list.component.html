@@ -34,7 +34,12 @@
                 <strong>{{ value }}</strong>
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="SENT AT" prop="created_at">
+            <ngx-datatable-column name="EMAIL" prop="email">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <strong>{{ value }}</strong>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="CREATED AT" prop="created_at">
               <ng-template let-value="value" ngx-datatable-cell-template>
                 {{ value | date:'dd MMM yyyy' }}
               </ng-template>
