@@ -188,13 +188,13 @@
             <div class="row">
               <div class="col-6">
                 <label for="">Film Type</label>
-                <select class="col-12" formControlName="film_typeName">
+                <select class="col-12" formControlName="film_type_id">
                   <option value="{{ f.film_type_id }}" *ngFor="let f of filmTypeData">{{ f.name }}</option>
                 </select>
               </div>
               <div class="col-6">
                 <label for="">Format</label>
-                <select class="col-12" formControlName="film_formatName">
+                <select class="col-12" formControlName="film_format_id">
                   <option value="{{ f.film_format_id }}" *ngFor="let f of filmFormatData">{{ f.name }}</option>
                 </select>
               </div>
@@ -204,13 +204,13 @@
             <div class="row">
               <div class="col-6">
                 <label for="">Film Type</label>
-                <select class="col-12" formControlName="scan_typeName">
+                <select class="col-12" formControlName="scan_type_id">
                   <option value="{{ s.scan_type_id }}" *ngFor="let s of scanTypeData">{{ s.name }}</option>
                 </select>
               </div>
               <div class="col-6">
                 <label for="">Format</label>
-                <select class="col-12" formControlName="scannerName">
+                <select class="col-12" formControlName="scanner_id">
                   <option value="{{ s.scanner_id }}" *ngFor="let s of scannerData">{{ s.name }}</option>
                 </select>
               </div>
@@ -220,7 +220,7 @@
             <div class="row">
               <div class="col-6">
                 <label for="">Process</label>
-                <input type="text" class="form-control custom-input" formControlName="push_pullName" placeholder="Push" />
+                <input type="text" class="form-control custom-input" formControlName="push_pull_id" placeholder="Push" />
               </div>
               <div class="col-6">
                 <label for="">Amount</label>

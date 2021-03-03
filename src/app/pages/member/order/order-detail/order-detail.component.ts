@@ -82,11 +82,11 @@ export class OrderDetailComponent implements OnInit {
     this.filmEdit = data;
     this.fgFilmEdit = new FormGroup({
       film_brand: new FormControl(this.filmEdit?.film_brand, Validators.required),
-      film_typeName: new FormControl(this.filmEdit?.film_type?.name, Validators.required),
-      film_formatName: new FormControl(this.filmEdit?.film_format?.name, Validators.required),
-      scan_typeName: new FormControl(this.filmEdit?.scan_type?.name, Validators.required),
-      scannerName: new FormControl(this.filmEdit?.scanner?.name, Validators.required),
-      push_pullName: new FormControl(this.filmEdit?.push_pull?.name, Validators.required),
+      film_type_id: new FormControl(this.filmEdit?.film_type?.film_type_id, Validators.required),
+      film_format_id: new FormControl(this.filmEdit?.film_format?.film_format_id, Validators.required),
+      scan_type_id: new FormControl(this.filmEdit?.scan_type?.scan_type_id, Validators.required),
+      scanner_id: new FormControl(this.filmEdit?.scanner?.scanner_id, Validators.required),
+      push_pull_id: new FormControl(this.filmEdit?.push_pull?.push_pull_id, Validators.required),
       push_pull_value: new FormControl(this.filmEdit?.push_pull_value, Validators.required),
       number_of_rolls: new FormControl(this.filmEdit?.number_of_rolls, Validators.required),
       additional_notes: new FormControl(this.filmEdit?.additional_notes, Validators.required)
