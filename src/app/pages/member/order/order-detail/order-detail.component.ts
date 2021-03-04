@@ -34,6 +34,7 @@ export class OrderDetailComponent implements OnInit {
   filmFormatData = [];
   scanTypeData = [];
   scannerData = [];
+  pushPullData = [];
 
   id = 0;
   detail = null;
@@ -57,6 +58,7 @@ export class OrderDetailComponent implements OnInit {
     this.getFilmFormat();
     this.getScanType();
     this.getScanner();
+    this.getPushPull();
   }
 
   back() {
@@ -172,6 +174,25 @@ export class OrderDetailComponent implements OnInit {
       .subscribe(
         (res) => {
           this.scannerData = res.response.rows;
+          console.log('res', res);
+          this.loader.stop();
+        },
+        (err) => {
+          this.loader.stop();
+          console.log('err', err);
+        }
+      );
+  }
+
+  getPushPull() {
+    this.loader.start();
+    this.api
+      .getData(
+        'user/push_pull/list'
+      )
+      .subscribe(
+        (res) => {
+          this.pushPullData = res.response.rows;
           console.log('res', res);
           this.loader.stop();
         },

@@ -27,7 +27,7 @@
             <div class="col">
               <div class="row">
                 <div class="col-12 text-muted">PROMO USED</div>
-                <div class="col">{{ detail?.user_list.length }}</div>
+                <div class="col">{{ used }}</div>
               </div>
             </div>
             <!-- <div class="col">
@@ -88,17 +88,17 @@
             (page)="paging($event)"
             [externalPaging]="false"
           >
-            <ngx-datatable-column name="USERNAME" prop="user.name">
+            <ngx-datatable-column name="USERNAME" prop="name">
               <ng-template let-value="value" ngx-datatable-cell-template>
                 <strong>{{ value }}</strong>
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="E-MAIL" prop="user.email">
+            <ngx-datatable-column name="E-MAIL" prop="email">
               <ng-template let-value="value" ngx-datatable-cell-template>
                 <strong>{{ value }}</strong>
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="DATE USED" prop="created_at">
+            <ngx-datatable-column name="DATE USED" prop="latest_transaction">
               <ng-template let-value="value" ngx-datatable-cell-template>
                 {{ value | date: 'medium' }}
               </ng-template>

@@ -28,7 +28,7 @@ export class MemberComponent implements OnInit {
     //    this.userType = this.cache.currentUser.type;
     this.pushRightClass = 'push-right';
     console.log('member');
-    this.getDetail();
+    setInterval(() => this.getNotif(), 2468);
   }
 
   receiveCollapsed($event) {
@@ -45,7 +45,7 @@ export class MemberComponent implements OnInit {
     dom.classList.remove(this.pushRightClass);
   }
 
-  getDetail(): void {
+  getNotif(): void {
     this.api
       .getData(
         `admin/admin_notification`,

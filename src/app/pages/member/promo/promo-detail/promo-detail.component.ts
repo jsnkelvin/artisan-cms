@@ -18,6 +18,7 @@ export class PromoDetailComponent implements OnInit {
   detail = null;
 
   page = new PageTable();
+  used = 0;
 
   constructor(
     private router: Router,
@@ -52,6 +53,10 @@ export class PromoDetailComponent implements OnInit {
         (res) => {
           console.log('res', res);
           this.detail = res.response;
+          this.used = 0;
+          for (const u of this.detail.user_list) {
+            this.used += Number(u.count);
+          }
           this.loader.stop();
         },
         (err) => {
