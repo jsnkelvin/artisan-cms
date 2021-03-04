@@ -38,6 +38,8 @@ export class OrderDetailComponent implements OnInit {
   id = 0;
   detail = null;
 
+  subsParam = null;
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -47,8 +49,10 @@ export class OrderDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.params.id;
-    this.getDetail();
+    this.subsParam = this.activatedRoute.params.subscribe(p => {
+      this.id = p.id;
+      this.getDetail();
+    });
     this.getFilmType();
     this.getFilmFormat();
     this.getScanType();

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CacheService, GlobalService } from '@shared/services';
+import { ApiService, CacheService, GlobalService } from '@shared/services';
 import { AuthenticationService } from '../../shared/services/authentication.service';
 @Component({
   selector: 'app-member',
@@ -8,21 +8,27 @@ import { AuthenticationService } from '../../shared/services/authentication.serv
   styleUrls: ['./member.component.scss'],
 })
 export class MemberComponent implements OnInit {
+
   public pushRightClass: string;
   isNavbarCollapsed = false;
   collapedSideBar: boolean;
   userType: any = null;
+
+  notif = [];
+
   constructor(
     public authSrv: AuthenticationService,
     private cache: CacheService,
     public router: Router,
-    private gs: GlobalService
+    private gs: GlobalService,
+    private api: ApiService
   ) {}
 
   ngOnInit(): void {
     //    this.userType = this.cache.currentUser.type;
     this.pushRightClass = 'push-right';
     console.log('member');
+    this.getDetail();
   }
 
   receiveCollapsed($event) {
@@ -37,5 +43,37 @@ export class MemberComponent implements OnInit {
   closeSidebar() {
     const dom: any = document.querySelector('body');
     dom.classList.remove(this.pushRightClass);
+  }
+
+  getDetail(): void {
+    this.api
+      .getData(
+        `admin/admin_notification`,
+      )
+      .subscribe(
+        (res) => {
+          console.log('res', res);
+          this.notif = res.response.rows;
+        },
+        (err) => {
+          console.log('err', err);
+        }
+      );
+  }
+
+  openNotif(notifData): void {
+    this.api
+      .putData(
+        `admin/admin_notification/${notifData.admin_notification_id}`,
+      )
+      .subscribe(
+        (res) => {
+          console.log('res', res);
+          this.router.navigateByUrl(`member/order/${notifData.transaction_id}`);
+        },
+        (err) => {
+          console.log('err', err);
+        }
+      );
   }
 }

@@ -9,14 +9,25 @@
       </button>
       <ul class="navbar-nav ml-auto mt-3">
         <li class="nav-item dropdown" dropdown>
-          <a id="button-basic" dropdownToggle class="nav-link dropdown-toggle pointer">
+          <a id="button-basic" dropdownToggle class="nav-link dropdown-toggle" style="cursor: pointer;">
+            <i class="fa fa-bell" aria-hidden="true"></i>
+          </a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right" style="max-height: 384px; overflow-y: scroll;">
+            <a class="dropdown-item px-3 {{ i.is_read ? 'text-muted' : ''}}" (click)="openNotif(i)" *ngFor="let i of notif" style="cursor: pointer;">
+              <small>{{ i?.created_at | date:'dd MMM yyyy, HH:mm:ss' }}</small>
+              <div>{{ i?.message }}</div>
+            </a>
+          </div>
+        </li>
+        <li class="nav-item dropdown" dropdown>
+          <a id="button-basic" dropdownToggle class="nav-link dropdown-toggle" style="cursor: pointer;">
             {{ authSrv.user?.username }}
             <!--   <span *ngIf="authSrv.user?.username === '1'">(Super Admin)</span>
                   <span *ngIf="authSrv.user?.username != '1'">(Admin)</span> -->
             <span>(tes)</span>
           </a>
-          <div *dropdownMenu class="dropdown-menu">
-            <a class="dropdown-item">Logout</a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item px-3">Logout</a>
           </div>
         </li>
       </ul>
