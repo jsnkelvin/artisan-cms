@@ -18,7 +18,6 @@ export class PromoDetailComponent implements OnInit {
   detail = null;
 
   page = new PageTable();
-  rows = [];
 
   constructor(
     private router: Router,

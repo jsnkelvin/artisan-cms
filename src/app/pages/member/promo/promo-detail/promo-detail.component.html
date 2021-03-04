@@ -27,7 +27,7 @@
             <div class="col">
               <div class="row">
                 <div class="col-12 text-muted">PROMO USED</div>
-                <div class="col">{{ detail?.usage }}</div>
+                <div class="col">{{ detail?.user_list.length }}</div>
               </div>
             </div>
             <!-- <div class="col">
@@ -78,7 +78,7 @@
         <div class="card-body">
           <ngx-datatable
             class="bootstrap"
-            [rows]="rows"
+            [rows]="detail?.user_list"
             [columnMode]="'force'"
             [headerHeight]="80"
             [footerHeight]="'50'"
@@ -86,14 +86,14 @@
             [count]="page.totalElements"
             [limit]="page.size"
             (page)="paging($event)"
-            [externalPaging]="true"
+            [externalPaging]="false"
           >
-            <ngx-datatable-column name="USERNAME" prop="promo_id">
+            <ngx-datatable-column name="USERNAME" prop="user.name">
               <ng-template let-value="value" ngx-datatable-cell-template>
                 <strong>{{ value }}</strong>
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="E-MAIL" prop="name">
+            <ngx-datatable-column name="E-MAIL" prop="user.email">
               <ng-template let-value="value" ngx-datatable-cell-template>
                 <strong>{{ value }}</strong>
               </ng-template>
