@@ -29,6 +29,8 @@ export class AdminAddComponent implements OnInit {
 
   initForm() {
     this.fg = new FormGroup({
+      name: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     });
@@ -41,7 +43,7 @@ export class AdminAddComponent implements OnInit {
 
     const body = this.fg.value;
 
-    this.api.postData('admin/admin', body).subscribe(
+    this.api.postData('admin/auth/register', body).subscribe(
       (res) => {
         //  console.log('res',res);
         this.loader.stop();
