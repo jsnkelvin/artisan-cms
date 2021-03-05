@@ -79,22 +79,22 @@
           <div class="row mt-3">
             <div class="col">
               <div class="row">
-                <div class="col-12 text-muted" *ngIf="detail?.transaction_status?.id == 1">&nbsp;</div>
+                <div class="col-12 text-muted" *ngIf="detail?.transaction_status?.status_id == 1">&nbsp;</div>
                 <div class="col">
-                  <div *ngIf="detail?.transaction_status?.id == 1">&nbsp;</div>
+                  <div *ngIf="detail?.transaction_status?.status_id == 1">&nbsp;</div>
                   <button class="rounded btn btn-green col-12"
                     (click)="showModalGoToProcess()"
-                    *ngIf="detail?.transaction_status?.id == 2">
+                    *ngIf="detail?.transaction_status?.status_id == 2">
                     Film Received, Going to Process
                   </button>
                   <button class="rounded btn btn-green col-12"
                     (click)="showModalShareFilm()"
-                    *ngIf="detail?.transaction_status?.id == 3">
+                    *ngIf="detail?.transaction_status?.status_id == 3">
                     Share Film Gallery
                   </button>
                   <button class="rounded btn btn-green col-12"
                     (click)="showModalInputProofShipment()"
-                    *ngIf="detail?.transaction_status?.id == 4">
+                    *ngIf="detail?.transaction_status?.status_id == 4">
                     Input Proof of Shipment
                   </button>
                 </div>
