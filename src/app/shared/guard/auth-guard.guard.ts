@@ -21,6 +21,11 @@ export class AuthGuardGuard implements CanActivate {
           return observer.next(true);
         } else {
           // HANDLE CONDITION IF NOT LOGGED IN HERE & RETURN OBSERVER FALSE
+          this.router.navigate(['/login'], {
+            queryParams: {
+              returnUrl: state.url
+            }
+          });
           return observer.next(false);
         }
       });

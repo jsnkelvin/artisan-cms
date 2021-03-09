@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ToastrService } from 'ngx-toastr';
 
@@ -12,6 +12,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+
+  returnUrl = '/';
+
   loginForm: FormGroup;
   submitted = false;
   show = false;
@@ -19,6 +22,7 @@ export class LoginComponent implements OnInit {
     public fb: FormBuilder,
     public gs: GlobalService,
     public router: Router,
+    public ac: ActivatedRoute,
     public authSrv: AuthenticationService,
     public loading: NgxUiLoaderService,
     public toast: ToastrService
@@ -34,9 +38,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.returnUrl = this.ac.snapshot.queryParams.returnUrl || '/member';
     this.authSrv.isAuthenticated([]).subscribe((exists) => {
       if (exists) {
-        this.router.navigate(['/member']);
+        this.router.navigateByUrl(this.returnUrl);
       }
     });
   }
@@ -63,7 +68,7 @@ export class LoginComponent implements OnInit {
           if (res.response) {
             this.gs.log('--> sukses login', res.result);
             this.loading.stop();
-            this.router.navigate(['/member']);
+            this.router.navigateByUrl(this.returnUrl);
             //   this.toast.success(res.result.message, "Success");
           } else {
             this.loading.stop();

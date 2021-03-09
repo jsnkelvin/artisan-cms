@@ -76,4 +76,9 @@ export class MemberComponent implements OnInit {
         }
       );
   }
+
+  logout(): void {
+    this.authSrv.logout();
+    this.router.navigateByUrl('/login');
+  }
 }
