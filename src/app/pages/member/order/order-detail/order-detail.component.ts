@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ApiService, GlobalService } from '../../../../shared/services';
 
@@ -17,6 +18,9 @@ export class OrderDetailComponent implements OnInit {
   disableInputProofShipment = false;
 
   fgProofShipment: FormGroup;
+
+  @ViewChild('modalUserPayment', { static: false }) modalUserPayment: ModalDirective;
+  isModalUserPayment = false;
 
   @ViewChild('modalShareFilm', { static: false }) modalShareFilm: ModalDirective;
   isModalShareFilm = false;
@@ -46,6 +50,7 @@ export class OrderDetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private loader: NgxUiLoaderService,
     private api: ApiService,
+    private toast: ToastrService,
     private gs: GlobalService
   ) { }
 
@@ -212,12 +217,14 @@ export class OrderDetailComponent implements OnInit {
       .subscribe(
         (res) => {
           console.log('res', res);
+          this.toast.success('Save Film Success');
           this.hideModalEditFilm();
           this.getDetail();
           this.loader.stop();
         },
         (err) => {
           console.log('err', err);
+          this.toast.success('Failed To Save Film');
           this.loader.stop();
         }
       );
@@ -243,12 +250,14 @@ export class OrderDetailComponent implements OnInit {
       .subscribe(
         (res) => {
           console.log('res', res);
+          this.toast.success('Process Success');
           this.hideModalGoToProcess();
           this.getDetail();
           this.loader.stop();
         },
         (err) => {
           console.log('err', err);
+          this.toast.success('Failed To Process');
           this.loader.stop();
         }
       );
@@ -274,12 +283,14 @@ export class OrderDetailComponent implements OnInit {
       .subscribe(
         (res) => {
           console.log('res', res);
+          this.toast.success('Share Film Success');
           this.hideModalShareFilm();
           this.getDetail();
           this.loader.stop();
         },
         (err) => {
           console.log('err', err);
+          this.toast.success('Failed To Share Film');
           this.loader.stop();
         }
       );
@@ -311,15 +322,29 @@ export class OrderDetailComponent implements OnInit {
       .subscribe(
         (res) => {
           console.log('res', res);
+          this.toast.success('Input Proof Of Shipment Success');
           this.hideModalInputProofShipment();
           this.getDetail();
           this.loader.stop();
         },
         (err) => {
           console.log('err', err);
+          this.toast.success('Failed To Input Proof Of Shipment');
           this.loader.stop();
         }
       );
+  }
+
+  showModalUserPayment(): void {
+    this.isModalUserPayment = true;
+  }
+
+  hideModalUserPayment(): void {
+    this.modalUserPayment.hide();
+  }
+
+  onHiddenUserPayment(): void {
+    this.isModalUserPayment = false;
   }
 
 }

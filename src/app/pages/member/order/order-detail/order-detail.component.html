@@ -41,7 +41,7 @@
             <div class="col">
               <div class="row">
                 <div class="col-12 text-muted">RECEIVED DATE</div>
-                <div class="col">{{ detail?.received_date | date:'dd MMM yyyy' }}</div>
+                <div class="col">{{ detail?.film_received_at | date:'dd MMM yyyy' }}</div>
               </div>
             </div>
             <div class="col">
@@ -66,13 +66,23 @@
             </div>
             <div class="col-xl-6 col-12">
               <div class="row">
-                <div class="col-12 text-muted">&nbsp;</div>
+                <div class="col-12 text-muted" *ngIf="detail?.user_shipment_proof || (detail?.courier && detail?.courier_receipt)">
+                  PROOF OF SHIPMENT
+                </div>
                 <div class="col">
-                  <u *ngIf="detail?.courier && detail?.courier_receipt"
-                    (click)="showModalInputProofShipment(true)" style="cursor: pointer;">
-                    See Proof of Shipment
+                  <u style="cursor: pointer;"
+                    *ngIf="detail?.user_shipment_proof"
+                    (click)="showModalUserPayment()">
+                    See User PoS
                   </u>
                 </div>
+                <!-- <div class="col">
+                  <u style="cursor: pointer;"
+                    *ngIf="detail?.courier && detail?.courier_receipt"
+                    (click)="showModalInputProofShipment(true)">
+                    See Admin PoS
+                  </u>
+                </div> -->
               </div>
             </div>
           </div>
@@ -323,6 +333,23 @@
             </button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isModalUserPayment" [config]="{ show: true }" (onHidden)="onHiddenUserPayment()" bsModal #modalUserPayment="bs-modal"
+     class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-auto-name" class="modal-title pull-left">Proof Of Shipment</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideModalUserPayment()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img class="w-100" [src]="detail?.user_shipment_proof" />
       </div>
     </div>
   </div>

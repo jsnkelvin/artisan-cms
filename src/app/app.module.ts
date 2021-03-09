@@ -49,11 +49,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     JwtAuthModule,
     ToastrModule.forRoot({
       timeOut: 3000,
-      positionClass: 'toast-top-full-width',
-      preventDuplicates: true,
+      positionClass: 'toast-top-right',
       closeButton: true,
       progressBar: true,
-      progressAnimation: 'increasing',
+      progressAnimation: 'increasing'
     }),
     NgxUiLoaderModule,
   ],
