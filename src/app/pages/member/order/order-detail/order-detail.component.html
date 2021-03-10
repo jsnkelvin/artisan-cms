@@ -129,52 +129,47 @@
             <div class="col-6 text-header">
               <b>FILM {{ f?.order }}</b>
             </div>
-            <div class="col-6 text-right">
+            <div class="col-6 text-right text-label">
               <u style="cursor: pointer;" (click)="showModalEditFilm(f)">Edit</u>
             </div>
           </div>
           <div class="row mb-2 mt-3">
             <div class="col-6 text-header">FILM BRAND</div>
-            <div class="col-6 text-right">{{ f?.film_brand }}</div>
+            <div class="col-6 text-right text-label">{{ f?.film_brand }}</div>
           </div>
           <div class="row my-2">
-<<<<<<< Updated upstream
-            <div class="col-6 text-muted">FILM TYPE</div>
-            <div class="col-6 text-right">{{ f?.film_type?.name }}</div>
-=======
             <div class="col-6 text-header">FILM TYPE</div>
-            <div class="col-6 text-right">{{ f?.film_type.name }}</div>
->>>>>>> Stashed changes
+            <div class="col-6 text-right text-label">{{ f?.film_type.name }}</div>
           </div>
           <div class="row my-2">
             <div class="col-6 text-header">FORMAT</div>
-            <div class="col-6 text-right">{{ f?.film_format?.name }}</div>
+            <div class="col-6 text-right text-label">{{ f?.film_format?.name }}</div>
           </div>
           <div class="row my-2">
             <div class="col-6 text-header">SCAN TYPE</div>
-            <div class="col-6 text-right">{{ f?.scan_type?.name }}</div>
+            <div class="col-6 text-right text-label">{{ f?.scan_type?.name }}</div>
           </div>
           <div class="row my-2">
             <div class="col-6 text-header">SCANNER</div>
-            <div class="col-6 text-right">{{ f?.scanner?.name }}</div>
+            <div class="col-6 text-right text-label">{{ f?.scanner?.name }}</div>
           </div>
           <div class="row my-2">
             <div class="col-6 text-header">PROCESS</div>
-            <div class="col-6 text-right">{{ f?.push_pull?.name || 'Normal' }}</div>
+            <div class="col-6 text-right text-label">{{ f?.push_pull?.name || 'Normal' }}</div>
           </div>
           <div class="row my-2">
             <div class="col-6 text-header">AMOUNT</div>
-            <div class="col-6 text-right">{{ f?.push_pull_value || '-' }}</div>
+            <div class="col-6 text-right text-label">{{ f?.push_pull_value || '-' }}</div>
           </div>
           <div class="row mt-2 mb-3">
             <div class="col-6 text-header">NO. OF ROLLS</div>
-            <div class="col-6 text-right">{{ f?.number_of_rolls }}</div>
+            <div class="col-6 text-right text-label">{{ f?.number_of_rolls }}</div>
           </div>
           <div class="row mt-3">
             <div class="col-12 text-header">
               <b>ADDITIONAL NOTES</b>
             </div>
-            <div class="col-12">{{ f?.additional_notes }}</div>
+            <div class="col-12 text-label">{{ f?.additional_notes }}</div>
           </div>
         </div>
       </div>
