@@ -14,19 +14,19 @@
           <div class="row">
             <div class="col">
               <div class="row">
-                <div class="col-12 text-muted">ORDER ID</div>
-                <div class="col">{{ detail?.transaction_code }}</div>
+                <div class="col-12 text-header">ORDER ID</div>
+                <div class="col text-label">{{ detail?.transaction_code }}</div>
               </div>
             </div>
             <div class="col">
               <div class="row">
-                <div class="col-12 text-muted">VALUE</div>
+                <div class="col-12 text-header">VALUE</div>
                 <div class="col">{{ detail?.price | currency:'Rp. ':'symbol':'0.0' }}</div>
               </div>
             </div>
             <div class="col">
               <div class="row">
-                <div class="col-12 text-muted">NEGATIVE REQUEST</div>
+                <div class="col-12 text-header">NEGATIVE REQUEST</div>
                 <div class="col">{{ detail?.negative?.name }}</div>
               </div>
             </div>
@@ -34,19 +34,19 @@
           <div class="row mt-3">
             <div class="col">
               <div class="row">
-                <div class="col-12 text-muted">TRANSACTION DATE</div>
+                <div class="col-12 text-header">TRANSACTION DATE</div>
                 <div class="col">{{ detail?.created_at | date:'dd MMM yyyy' }}</div>
               </div>
             </div>
             <div class="col">
               <div class="row">
-                <div class="col-12 text-muted">RECEIVED DATE</div>
-                <div class="col">{{ detail?.film_received_at | date:'dd MMM yyyy' }}</div>
+                <div class="col-12 text-header">RECEIVED DATE</div>
+                <div class="col">{{ detail?.received_date | date:'dd MMM yyyy' }}</div>
               </div>
             </div>
             <div class="col">
               <div class="row">
-                <div class="col-12 text-muted">ORDER TYPE</div>
+                <div class="col-12 text-header">ORDER TYPE</div>
                 <div class="col">{{ detail?.order_type?.name }}</div>
               </div>
             </div>
@@ -58,15 +58,15 @@
       <div class="card card-basic">
         <div class="card-body">
           <div class="row">
-            <div class="col-xl-6 col-12">
+            <div class="col-xl-7 col-12">
               <div class="row">
-                <div class="col-12 text-muted">ORDER STATUS</div>
+                <div class="col-12 text-header">ORDER STATUS</div>
                 <div class="col">{{ detail?.transaction_status?.name }}</div>
               </div>
             </div>
-            <div class="col-xl-6 col-12">
+            <div class="col-xl-5 col-12">
               <div class="row">
-                <div class="col-12 text-muted" *ngIf="detail?.user_shipment_proof || (detail?.courier && detail?.courier_receipt)">
+                <div class="col-12 text-header" *ngIf="detail?.user_shipment_proof || (detail?.courier && detail?.courier_receipt)">
                   PROOF OF SHIPMENT
                 </div>
                 <div class="col">
@@ -89,7 +89,7 @@
           <div class="row mt-3">
             <div class="col">
               <div class="row">
-                <div class="col-12 text-muted" *ngIf="detail?.transaction_status?.status_id == 1">&nbsp;</div>
+                <div class="col-12 text-header" *ngIf="detail?.transaction_status?.status_id == 1">&nbsp;</div>
                 <div class="col">
                   <div *ngIf="detail?.transaction_status?.status_id == 1">&nbsp;</div>
                   <button class="rounded btn btn-green col-12"
@@ -126,7 +126,7 @@
       <div class="card card-basic">
         <div class="card-body">
           <div class="row mb-3">
-            <div class="col-6 text-muted">
+            <div class="col-6 text-header">
               <b>FILM {{ f?.order }}</b>
             </div>
             <div class="col-6 text-right">
@@ -134,39 +134,44 @@
             </div>
           </div>
           <div class="row mb-2 mt-3">
-            <div class="col-6 text-muted">FILM BRAND</div>
+            <div class="col-6 text-header">FILM BRAND</div>
             <div class="col-6 text-right">{{ f?.film_brand }}</div>
           </div>
           <div class="row my-2">
+<<<<<<< Updated upstream
             <div class="col-6 text-muted">FILM TYPE</div>
             <div class="col-6 text-right">{{ f?.film_type?.name }}</div>
+=======
+            <div class="col-6 text-header">FILM TYPE</div>
+            <div class="col-6 text-right">{{ f?.film_type.name }}</div>
+>>>>>>> Stashed changes
           </div>
           <div class="row my-2">
-            <div class="col-6 text-muted">FORMAT</div>
+            <div class="col-6 text-header">FORMAT</div>
             <div class="col-6 text-right">{{ f?.film_format?.name }}</div>
           </div>
           <div class="row my-2">
-            <div class="col-6 text-muted">SCAN TYPE</div>
+            <div class="col-6 text-header">SCAN TYPE</div>
             <div class="col-6 text-right">{{ f?.scan_type?.name }}</div>
           </div>
           <div class="row my-2">
-            <div class="col-6 text-muted">SCANNER</div>
+            <div class="col-6 text-header">SCANNER</div>
             <div class="col-6 text-right">{{ f?.scanner?.name }}</div>
           </div>
           <div class="row my-2">
-            <div class="col-6 text-muted">PROCESS</div>
+            <div class="col-6 text-header">PROCESS</div>
             <div class="col-6 text-right">{{ f?.push_pull?.name || 'Normal' }}</div>
           </div>
           <div class="row my-2">
-            <div class="col-6 text-muted">AMOUNT</div>
+            <div class="col-6 text-header">AMOUNT</div>
             <div class="col-6 text-right">{{ f?.push_pull_value || '-' }}</div>
           </div>
           <div class="row mt-2 mb-3">
-            <div class="col-6 text-muted">NO. OF ROLLS</div>
+            <div class="col-6 text-header">NO. OF ROLLS</div>
             <div class="col-6 text-right">{{ f?.number_of_rolls }}</div>
           </div>
           <div class="row mt-3">
-            <div class="col-12 text-muted">
+            <div class="col-12 text-header">
               <b>ADDITIONAL NOTES</b>
             </div>
             <div class="col-12">{{ f?.additional_notes }}</div>
