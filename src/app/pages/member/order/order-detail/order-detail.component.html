@@ -197,15 +197,15 @@
           <div class="form-group">
             <div class="row">
               <div class="col-6">
-                <label for="">Film Type</label>
-                <select class="col-12" formControlName="film_type_id">
-                  <option value="{{ f?.film_type_id }}" *ngFor="let f of filmTypeData">{{ f?.name }}</option>
+                <label for="">Scan Type</label>
+                <select class="col-12" formControlName="scan_type_id">
+                  <option value="{{ s?.scan_type_id }}" *ngFor="let s of scanTypeData">{{ s?.name }}</option>
                 </select>
               </div>
               <div class="col-6">
-                <label for="">Format</label>
-                <select class="col-12" formControlName="film_format_id">
-                  <option value="{{ f?.film_format_id }}" *ngFor="let f of filmFormatData">{{ f?.name }}</option>
+                <label for="">Film Type</label>
+                <select class="col-12" formControlName="film_type_id">
+                  <option value="{{ f?.film_type_id }}" *ngFor="let f of filmTypeData">{{ f?.name }}</option>
                 </select>
               </div>
             </div>
@@ -213,15 +213,15 @@
           <div class="form-group">
             <div class="row">
               <div class="col-6">
-                <label for="">Film Type</label>
-                <select class="col-12" formControlName="scan_type_id">
-                  <option value="{{ s?.scan_type_id }}" *ngFor="let s of scanTypeData">{{ s?.name }}</option>
+                <label for="">Scanner</label>
+                <select class="col-12" formControlName="scanner_id">
+                  <option value="{{ s?.scanner_id }}" *ngFor="let s of scannerData">{{ s?.name }}</option>
                 </select>
               </div>
               <div class="col-6">
                 <label for="">Format</label>
-                <select class="col-12" formControlName="scanner_id">
-                  <option value="{{ s?.scanner_id }}" *ngFor="let s of scannerData">{{ s?.name }}</option>
+                <select class="col-12" formControlName="film_format_id">
+                  <option value="{{ f?.film_format_id }}" *ngFor="let f of filmFormatData">{{ f?.name }}</option>
                 </select>
               </div>
             </div>

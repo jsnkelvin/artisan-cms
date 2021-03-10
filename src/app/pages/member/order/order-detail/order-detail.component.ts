@@ -117,11 +117,11 @@ export class OrderDetailComponent implements OnInit {
     this.loader.start();
     this.api
       .getData(
-        'admin/film_type'
+        'admin/lists/film_type'
       )
       .subscribe(
         (res) => {
-          this.filmTypeData = res.response.rows;
+          this.filmTypeData = res.response;
           console.log('res', res);
           this.loader.stop();
         },
@@ -136,11 +136,11 @@ export class OrderDetailComponent implements OnInit {
     this.loader.start();
     this.api
       .getData(
-        'admin/film_format'
+        'admin/lists/film_format'
       )
       .subscribe(
         (res) => {
-          this.filmFormatData = res.response.rows;
+          this.filmFormatData = res.response;
           console.log('res', res);
           this.loader.stop();
         },
@@ -155,11 +155,11 @@ export class OrderDetailComponent implements OnInit {
     this.loader.start();
     this.api
       .getData(
-        'admin/scan_type'
+        'admin/lists/scan_type'
       )
       .subscribe(
         (res) => {
-          this.scanTypeData = res.response.rows;
+          this.scanTypeData = res.response;
           console.log('res', res);
           this.loader.stop();
         },
@@ -174,11 +174,11 @@ export class OrderDetailComponent implements OnInit {
     this.loader.start();
     this.api
       .getData(
-        'admin/scanner'
+        'admin/lists/scanner'
       )
       .subscribe(
         (res) => {
-          this.scannerData = res.response.rows;
+          this.scannerData = res.response;
           console.log('res', res);
           this.loader.stop();
         },
