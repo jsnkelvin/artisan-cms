@@ -139,7 +139,7 @@
           </div>
           <div class="row my-2">
             <div class="col-6 text-muted">FILM TYPE</div>
-            <div class="col-6 text-right">{{ f?.film_type.name }}</div>
+            <div class="col-6 text-right">{{ f?.film_type?.name }}</div>
           </div>
           <div class="row my-2">
             <div class="col-6 text-muted">FORMAT</div>
@@ -199,13 +199,13 @@
               <div class="col-6">
                 <label for="">Film Type</label>
                 <select class="col-12" formControlName="film_type_id">
-                  <option value="{{ f.film_type_id }}" *ngFor="let f of filmTypeData">{{ f.name }}</option>
+                  <option value="{{ f?.film_type_id }}" *ngFor="let f of filmTypeData">{{ f?.name }}</option>
                 </select>
               </div>
               <div class="col-6">
                 <label for="">Format</label>
                 <select class="col-12" formControlName="film_format_id">
-                  <option value="{{ f.film_format_id }}" *ngFor="let f of filmFormatData">{{ f.name }}</option>
+                  <option value="{{ f?.film_format_id }}" *ngFor="let f of filmFormatData">{{ f?.name }}</option>
                 </select>
               </div>
             </div>
@@ -215,13 +215,13 @@
               <div class="col-6">
                 <label for="">Film Type</label>
                 <select class="col-12" formControlName="scan_type_id">
-                  <option value="{{ s.scan_type_id }}" *ngFor="let s of scanTypeData">{{ s.name }}</option>
+                  <option value="{{ s?.scan_type_id }}" *ngFor="let s of scanTypeData">{{ s?.name }}</option>
                 </select>
               </div>
               <div class="col-6">
                 <label for="">Format</label>
                 <select class="col-12" formControlName="scanner_id">
-                  <option value="{{ s.scanner_id }}" *ngFor="let s of scannerData">{{ s.name }}</option>
+                  <option value="{{ s?.scanner_id }}" *ngFor="let s of scannerData">{{ s?.name }}</option>
                 </select>
               </div>
             </div>
@@ -231,7 +231,7 @@
               <div class="col-6">
                 <label for="">Process</label>
                 <select class="col-12" formControlName="push_pull_id">
-                  <option value="{{ p.push_pull_id }}" *ngFor="let p of pushPullData">{{ p.name }}</option>
+                  <option value="{{ p?.push_pull_id }}" *ngFor="let p of pushPullData">{{ p?.name }}</option>
                 </select>
               </div>
               <div class="col-6">
