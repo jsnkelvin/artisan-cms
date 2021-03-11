@@ -198,13 +198,13 @@
             <div class="row">
               <div class="col-6">
                 <label for="">Scan Type</label>
-                <select class="col-12" formControlName="scan_type_id">
+                <select class="col-12" formControlName="scan_type_id" (change)="resetFilmType(); getFilmType($event.target.value)">
                   <option value="{{ s?.scan_type_id }}" *ngFor="let s of scanTypeData">{{ s?.name }}</option>
                 </select>
               </div>
               <div class="col-6">
                 <label for="">Film Type</label>
-                <select class="col-12" formControlName="film_type_id">
+                <select class="col-12" formControlName="film_type_id" (change)="resetScanner(); getScanner($event.target.value)">
                   <option value="{{ f?.film_type_id }}" *ngFor="let f of filmTypeData">{{ f?.name }}</option>
                 </select>
               </div>
@@ -214,7 +214,7 @@
             <div class="row">
               <div class="col-6">
                 <label for="">Scanner</label>
-                <select class="col-12" formControlName="scanner_id">
+                <select class="col-12" formControlName="scanner_id" (change)="resetFilmFormat(); getFilmFormat($event.target.value)">
                   <option value="{{ s?.scanner_id }}" *ngFor="let s of scannerData">{{ s?.name }}</option>
                 </select>
               </div>

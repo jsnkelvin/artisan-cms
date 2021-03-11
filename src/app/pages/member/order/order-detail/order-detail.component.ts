@@ -40,6 +40,10 @@ export class OrderDetailComponent implements OnInit {
   scannerData = [];
   pushPullData = [];
 
+  scan_type_id = null;
+  film_type_id = null;
+  scanner_id = null;
+
   id = 0;
   detail = null;
 
@@ -59,10 +63,7 @@ export class OrderDetailComponent implements OnInit {
       this.id = p.id;
       this.getDetail();
     });
-    this.getFilmType();
-    this.getFilmFormat();
     this.getScanType();
-    this.getScanner();
     this.getPushPull();
   }
 
@@ -93,59 +94,88 @@ export class OrderDetailComponent implements OnInit {
     this.filmEdit = data;
     this.fgFilmEdit = new FormGroup({
       film_brand: new FormControl(this.filmEdit?.film_brand, Validators.required),
-      film_type_id: new FormControl(this.filmEdit?.film_type?.film_type_id, Validators.required),
-      film_format_id: new FormControl(this.filmEdit?.film_format?.film_format_id, Validators.required),
       scan_type_id: new FormControl(this.filmEdit?.scan_type?.scan_type_id, Validators.required),
-      scanner_id: new FormControl(this.filmEdit?.scanner?.scanner_id, Validators.required),
+      film_type_id: new FormControl(this.filmEdit?.film_type?.film_type_id),
+      scanner_id: new FormControl(this.filmEdit?.scanner?.scanner_id),
+      film_format_id: new FormControl(this.filmEdit?.film_format?.film_format_id),
       push_pull_id: new FormControl(this.filmEdit?.push_pull?.push_pull_id, Validators.required),
       push_pull_value: new FormControl(this.filmEdit?.push_pull_value, Validators.required),
       number_of_rolls: new FormControl(this.filmEdit?.number_of_rolls, Validators.required),
       additional_notes: new FormControl(this.filmEdit?.additional_notes, Validators.required)
     });
     this.isModalEditFilmShown = true;
+    this.filmTypeData = [];
+    this.scannerData = [];
+    this.filmFormatData = [];
+    if (this.filmEdit?.scan_type?.scan_type_id) {
+      this.getFilmType(this.filmEdit.scan_type.scan_type_id);
+    }
+    if (this.filmEdit?.film_type?.film_type_id) {
+      this.getScanner(this.filmEdit.film_type.film_type_id);
+    }
+    if (this.filmEdit?.scanner?.scanner_id) {
+      this.getFilmFormat(this.filmEdit.scanner.scanner_id);
+    }
   }
  
   hideModalEditFilm(): void {
     this.modalEditFilm.hide();
   }
- 
+
   onHiddenEditFilm(): void {
     this.isModalEditFilmShown = false;
   }
 
-  getFilmType() {
-    this.loader.start();
+  resetFilmType(): void {
+    this.fgFilmEdit.controls.film_type_id.patchValue(null);
+    this.fgFilmEdit.controls.film_type_id.markAsDirty();
+    this.resetScanner();
+  }
+
+  resetScanner(): void {
+    this.fgFilmEdit.controls.scanner_id.patchValue(null);
+    this.fgFilmEdit.controls.scanner_id.markAsDirty();
+    this.resetFilmFormat();
+  }
+
+  resetFilmFormat(): void {
+    this.fgFilmEdit.controls.film_format_id.patchValue(null);
+    this.fgFilmEdit.controls.film_format_id.markAsDirty();
+  }
+
+  getFilmType(data) {
+    this.filmTypeData = [];
+    this.scannerData = [];
+    this.filmFormatData = [];
+    this.scan_type_id = data;
     this.api
       .getData(
-        'admin/lists/film_type'
+        `admin/lists/film_type?scan_type_id=${this.scan_type_id}`
       )
       .subscribe(
         (res) => {
           this.filmTypeData = res.response;
           console.log('res', res);
-          this.loader.stop();
         },
         (err) => {
-          this.loader.stop();
           console.log('err', err);
         }
       );
   }
 
-  getFilmFormat() {
-    this.loader.start();
+  getFilmFormat(data) {
+    this.filmFormatData = [];
+    this.scanner_id = data;
     this.api
       .getData(
-        'admin/lists/film_format'
+        `admin/lists/film_format?scan_type_id=${this.scan_type_id}&film_type_id=${this.film_type_id}&scanner_id=${this.scanner_id}`
       )
       .subscribe(
         (res) => {
           this.filmFormatData = res.response;
           console.log('res', res);
-          this.loader.stop();
         },
         (err) => {
-          this.loader.stop();
           console.log('err', err);
         }
       );
@@ -170,20 +200,21 @@ export class OrderDetailComponent implements OnInit {
       );
   }
 
-  getScanner() {
-    this.loader.start();
+  getScanner(data) {
+    this.scannerData = [];
+    this.filmFormatData = [];
+    this.film_type_id = data;
     this.api
       .getData(
-        'admin/lists/scanner'
+        `admin/lists/scanner?scan_type_id=${this.scan_type_id}&film_type_id=${this.film_type_id}`
       )
       .subscribe(
         (res) => {
           this.scannerData = res.response;
           console.log('res', res);
-          this.loader.stop();
         },
         (err) => {
-          this.loader.stop();
+          this.scannerData = [];
           console.log('err', err);
         }
       );
